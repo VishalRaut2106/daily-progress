@@ -8,15 +8,17 @@ class Solution {
             
             int idx = s.charAt(r) - 'a';
             
-            if (f[idx] == 0) d++;
+             if (f[idx] == 0) d++;
            
             f[idx]++;
             
             while (d > k) {
                 int leftIdx = s.charAt(l) - 'a';
-                f[leftIdx]--;
+                     f[leftIdx]--;
                 if (f[leftIdx] == 0) d--;
-                l++;
+                   
+                   
+                 l++;
             }
             
             if (d == k) {

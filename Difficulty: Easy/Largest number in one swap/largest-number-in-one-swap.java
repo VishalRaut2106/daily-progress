@@ -1,12 +1,25 @@
 class Solution {
     public String largestSwap(String s) {
-        char[] a = s.toCharArray();
-        int n = a.length, l = -1, r = -1, maxIdx = n - 1;
-        for (int i = n - 2; i >= 0; i--) {
-            if (a[i] > a[maxIdx]) maxIdx = i;
-            else if (a[i] < a[maxIdx]) { l = i; r = maxIdx; }
+        char[] arr = s.toCharArray();
+        int n = arr.length;
+
+        int[] last = new int[10];
+
+        for(int i = 0; i < n; i++) {
+            last[arr[i] - '0'] = i;
         }
-        if (l != -1) { char t = a[l]; a[l] = a[r]; a[r] = t; }
-        return new String(a);
+
+        for(int i = 0; i < n; i++) {
+            for(int d = 9; d > arr[i] - '0'; d--) {
+                if(last[d] > i) {
+                    char temp = arr[i];
+                    arr[i] = arr[last[d]];
+                    arr[last[d]] = temp;
+                    return new String(arr);
+                }
+            }
+        }
+
+        return s;
     }
 }
